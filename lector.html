@@ -1,0 +1,66 @@
+<html>
+
+<head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" r\ el="stylesheet">
+	<title>Historias de los usuarios</title>
+</head>
+
+<body>
+	<div class="container">
+		<h1>¡Escuchemos algunas historias!</h1>
+		<div>
+			<h3>Historias de Alex</h3>
+			<ul class="list-group">
+				<li v-for="story in storiesBy('Alex')" class="list-group-item">
+					{{ story.writer }} dijo "{{ story.plot }}"
+				</li>
+			</ul>
+			<h3>Historias de John</h3>
+			<ul class="list-group">
+				<li v-for="story in storiesBy('John')" class="list-group-item">
+					{{ story.writer }} dijo "{{ story.plot }}"
+				</li>
+			</ul>
+		</div>
+		<pre>
+{{ $data }}
+</pre>
+	</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el: '.container',
+		data: {
+			stories: [
+				{
+					plot: "¡Estrellé mi auto hoy!",
+					writer: "Alex"
+				},
+				{
+					plot: "¡Ayer, alguien robó mi bolso!",
+					writer: "John"
+				},
+				{
+					plot: "Alguien se comió mi chocolate...Alex",
+					writer: "John"
+				},
+				{
+					plot: "¡Me comí el chocolate de alguien!",
+					writer: "Alex"
+				},
+			]
+		},
+		methods:
+		{
+			// Un método que filtra las historias dependiendo del escritor
+			storiesBy: function (writer) {
+				return this.stories.filter(function (story) {
+					return story.writer === writer
+				})
+			},
+		}
+	})
+</script>
+
+</html>

@@ -1,0 +1,36 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <div class="container">
+        <h1>¡Identidades reales de superhéroes!</h1>
+            <li v-for="hero in heroes" class="list-group-item">
+                {{ hero | snitch }}
+                <!--por cada heroe se ejecuta la funcion snitch-->
+            </li>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js">
+</script>
+<script>
+    Vue.filter('snitch', function (hero) {
+        return '¡' + hero.secretId + ' es '
+            + hero.firstname + ' '
+            + hero.lastname + ' en la vida real!'
+    })
+    new Vue({
+        el: '.container',
+        data: {
+            heroes: [
+                { firstname: 'Bruce', lastname: 'wayne', secretId: 'Batman' },
+                { firstname: 'crark', lastname: 'kent', secretId: 'super' },
+                { firstname: 'jay', lastname: 'garrik', secretId: 'flash' },
+                { firstname: 'peter', lastname: 'parker', secretId: 'spider' }
+            ]
+        }
+    })
+</script>
+
+</html>
